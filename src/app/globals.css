@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --black: #0a0605;
+  --balsamico: #150C0C;
+  --burnt: #34150F;
+  --whiskey: #D39858;
+  --champagne: #EACEAA;
+  --champagne-muted: rgba(234, 206, 170, 0.5);
+  --champagne-dim: rgba(234, 206, 170, 0.65);
+  --champagne-faint: rgba(234, 206, 170, 0.35);
+  --whiskey-border: rgba(211, 152, 88, 0.1);
+  --whiskey-border-light: rgba(211, 152, 88, 0.18);
+  --whiskey-border-medium: rgba(211, 152, 88, 0.25);
+  --whiskey-border-strong: rgba(211, 152, 88, 0.35);
+}
+
+@theme inline {
+  --color-black: var(--black);
+  --color-balsamico: var(--balsamico);
+  --color-burnt: var(--burnt);
+  --color-whiskey: var(--whiskey);
+  --color-champagne: var(--champagne);
+  --color-champagne-muted: var(--champagne-muted);
+  --color-champagne-dim: var(--champagne-dim);
+  --color-champagne-faint: var(--champagne-faint);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-jost);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--champagne);
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes heroZoom {
+  to { transform: scale(1); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
