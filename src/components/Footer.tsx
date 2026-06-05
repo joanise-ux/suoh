@@ -14,10 +14,10 @@ export default function Footer() {
   ];
 
   const infoLinks = [
-    { label: t("About", "O nas"), href: "/#about" },
-    { label: t("Shipping & Returns", "Wysyłka i zwroty"), href: "#" },
-    { label: t("Care Guide", "Pielęgnacja"), href: "#" },
-    { label: t("Contact", "Kontakt"), href: "/#contact" },
+    { label: t("About", "O nas"), href: "/about" },
+    { label: t("Shipping & Returns", "Wysyłka i zwroty"), href: "/shipping" },
+    { label: t("Care Guide", "Pielęgnacja"), href: "/care" },
+    { label: t("Contact", "Kontakt"), href: "/contact" },
   ];
 
   const socialLinks = ["Instagram", "TikTok", "Pinterest"];

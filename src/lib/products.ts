@@ -32,8 +32,8 @@ export const products: Product[] = [
       "A refined crossbody bag with gold-tone hardware. Clean silhouette, minimal design — perfect for evenings out or everyday elegance.",
     descriptionPL:
       "Elegancka torebka crossbody ze złotymi okuciami. Minimalistyczny design — idealna na wieczorne wyjścia i codzienną elegancję.",
-    materials: "Vegan leather, gold-tone metal hardware, satin lining",
-    materialsPL: "Skóra wegańska, złote okucia metalowe, satynowa podszewka",
+    materials: "100% polyester silk cord, crochet, gold-tone metal hardware, satin lining",
+    materialsPL: "Sznurek z jedwabiu poliestrowego 100%, szydełko, złote okucia metalowe, satynowa podszewka",
     dimensions: "22 × 15 × 7 cm",
   },
   {
@@ -51,8 +51,8 @@ export const products: Product[] = [
       "Soft mauve shoulder bag with a relaxed structure. Spacious interior with interior pocket. Perfect companion for your daily essentials.",
     descriptionPL:
       "Miękka torebka na ramię w kolorze wrzosowym. Przestronne wnętrze z wewnętrzną kieszenią. Idealny towarzysz na co dzień.",
-    materials: "Vegan suede, brushed silver hardware, cotton lining",
-    materialsPL: "Wegański zamsz, srebrne okucia, bawełniana podszewka",
+    materials: "100% polyester silk cord, crochet, brushed silver hardware, cotton lining",
+    materialsPL: "Sznurek z jedwabiu poliestrowego 100%, szydełko, srebrne okucia, bawełniana podszewka",
     dimensions: "28 × 20 × 10 cm",
   },
   {
@@ -70,9 +70,9 @@ export const products: Product[] = [
       "Statement chain bag in deep graphite. Detachable chain strap lets you wear it as a clutch or crossbody. A bold yet timeless piece.",
     descriptionPL:
       "Efektowna torebka z łańcuszkiem w głębokim graficie. Odpinany łańcuszek pozwala nosić jako kopertówkę lub crossbody.",
-    materials: "Vegan leather, gunmetal chain, microfiber lining",
+    materials: "100% polyester silk cord, crochet, gunmetal chain, microfiber lining",
     materialsPL:
-      "Skóra wegańska, łańcuszek w kolorze gunmetal, podszewka z mikrofibry",
+      "Sznurek z jedwabiu poliestrowego 100%, szydełko, łańcuszek w kolorze gunmetal, podszewka z mikrofibry",
     dimensions: "24 × 14 × 6 cm",
   },
   {
@@ -90,15 +90,15 @@ export const products: Product[] = [
       "Our most architectural piece. Bold geometric lines in monochrome palette. Structured silhouette that holds its shape beautifully.",
     descriptionPL:
       "Nasz najbardziej architektoniczny model. Odważne geometryczne linie w monochromatycznej palecie. Strukturalna sylwetka.",
-    materials: "Vegan leather, matte black hardware, structured foam interior",
+    materials: "100% polyester silk cord, crochet, matte black hardware, structured foam interior",
     materialsPL:
-      "Skóra wegańska, matowe czarne okucia, strukturalne wnętrze z pianką",
+      "Sznurek z jedwabiu poliestrowego 100%, szydełko, matowe czarne okucia, strukturalne wnętrze z pianką",
     dimensions: "26 × 18 × 9 cm",
   },
   {
-    slug: "leather-keychain-noir",
-    name: "Leather Keychain Noir",
-    namePL: "Brelok skórzany Noir",
+    slug: "crochet-keychain-noir",
+    name: "Crochet Keychain Noir",
+    namePL: "Brelok szydełkowy Noir",
     price: 65,
     priceFormatted: "65 PLN",
     image: "/images/collection-keychains.jpg",
@@ -107,11 +107,11 @@ export const products: Product[] = [
     tagPL: "Ręcznie robiony · Brelok",
     category: "keychains",
     description:
-      "Minimalist leather keychain with gold clasp. Each one cut and finished by hand in our Wrocław studio.",
+      "Minimalist crocheted keychain with gold clasp. Each one handmade in our Wrocław studio.",
     descriptionPL:
-      "Minimalistyczny skórzany brelok ze złotym zapięciem. Każdy ręcznie wycinany i wykańczany w naszym wrocławskim studio.",
-    materials: "Genuine leather, gold-tone clasp",
-    materialsPL: "Skóra naturalna, złote zapięcie",
+      "Minimalistyczny szydełkowy brelok ze złotym zapięciem. Każdy ręcznie wykonany w naszym wrocławskim studio.",
+    materials: "100% polyester silk cord, crochet, gold-tone clasp",
+    materialsPL: "Sznurek z jedwabiu poliestrowego 100%, szydełko, złote zapięcie",
     dimensions: "8 × 3 cm",
   },
   {
@@ -126,11 +126,11 @@ export const products: Product[] = [
     tagPL: "Ręcznie robiony · Brelok",
     category: "keychains",
     description:
-      "Hand-braided leather keychain in warm whiskey tone. Unique braiding pattern makes each piece one of a kind.",
+      "Hand-crocheted keychain in warm whiskey tone. Unique crochet pattern makes each piece one of a kind.",
     descriptionPL:
-      "Ręcznie pleciony skórzany brelok w ciepłym kolorze whiskey. Unikalny wzór splotu sprawia, że każda sztuka jest jedyna w swoim rodzaju.",
-    materials: "Genuine leather, silver-tone ring",
-    materialsPL: "Skóra naturalna, srebrny kółeczko",
+      "Ręcznie szydełkowany brelok w ciepłym kolorze whiskey. Unikalny wzór szydełkowy sprawia, że każda sztuka jest jedyna w swoim rodzaju.",
+    materials: "100% polyester silk cord, crochet, silver-tone ring",
+    materialsPL: "Sznurek z jedwabiu poliestrowego 100%, szydełko, srebrne kółeczko",
     dimensions: "10 × 2.5 cm",
   },
   {
@@ -145,11 +145,11 @@ export const products: Product[] = [
     tagPL: "Ręcznie robiony · Zestaw",
     category: "gifts",
     description:
-      "Curated gift set including a leather keychain, card holder and linen pouch. Beautifully packaged in our signature box.",
+      "Curated gift set including a crocheted keychain, card holder and linen pouch. Beautifully packaged in our signature box.",
     descriptionPL:
-      "Zestaw prezentowy zawierający skórzany brelok, etui na karty i lnianą saszetkę. Pięknie zapakowany w nasze firmowe pudełko.",
-    materials: "Genuine leather, linen, cardboard gift box",
-    materialsPL: "Skóra naturalna, len, kartonowe pudełko prezentowe",
+      "Zestaw prezentowy zawierający szydełkowy brelok, etui na karty i lnianą saszetkę. Pięknie zapakowany w nasze firmowe pudełko.",
+    materials: "100% polyester silk cord, crochet, linen, cardboard gift box",
+    materialsPL: "Sznurek z jedwabiu poliestrowego 100%, szydełko, len, kartonowe pudełko prezentowe",
     dimensions: "Box: 25 × 18 × 8 cm",
   },
   {
@@ -167,9 +167,9 @@ export const products: Product[] = [
       "Premium gift set with a mini crossbody bag, keychain and personalized note card. The ultimate SUOH experience.",
     descriptionPL:
       "Ekskluzywny zestaw z mini torebką crossbody, brelokiem i personalizowaną kartką. Pełne doświadczenie SUOH.",
-    materials: "Vegan leather, genuine leather, linen, luxury gift box",
+    materials: "100% polyester silk cord, crochet, linen, luxury gift box",
     materialsPL:
-      "Skóra wegańska, skóra naturalna, len, luksusowe pudełko prezentowe",
+      "Sznurek z jedwabiu poliestrowego 100%, szydełko, len, luksusowe pudełko prezentowe",
     dimensions: "Box: 30 × 22 × 12 cm",
   },
 ];

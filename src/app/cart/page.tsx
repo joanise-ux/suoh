@@ -133,9 +133,12 @@ export default function CartPage() {
                     ✦ {t("Free shipping included", "Darmowa wysyłka w zestawie")}
                   </div>
                 )}
-                <button className="w-full bg-whiskey border-none py-4 text-[11px] tracking-[0.22em] uppercase text-black font-sans hover:bg-champagne transition-colors duration-300">
+                <Link
+                  href="/checkout"
+                  className="block w-full bg-whiskey border-none py-4 text-[11px] tracking-[0.22em] uppercase text-black font-sans hover:bg-champagne transition-colors duration-300 text-center no-underline"
+                >
                   {t("Checkout", "Przejdź do płatności")}
-                </button>
+                </Link>
               </div>
             </>
           )}

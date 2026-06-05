@@ -23,11 +23,11 @@ export default function Header() {
   });
 
   const navLinks = [
-    { href: "/#new", label: t("Shop", "Sklep") },
+    { href: "/shop", label: t("Shop", "Sklep") },
     { href: "/#collections", label: t("Collections", "Kolekcje") },
-    { href: "/#about", label: t("About", "O nas") },
-    { href: "/#lookbook", label: "Lookbook" },
-    { href: "/#contact", label: t("Contact", "Kontakt") },
+    { href: "/about", label: t("About", "O nas") },
+    { href: "/lookbook", label: "Lookbook" },
+    { href: "/contact", label: t("Contact", "Kontakt") },
   ];
 
   return (

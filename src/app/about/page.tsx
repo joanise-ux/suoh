@@ -57,8 +57,8 @@ export default function AboutPage() {
               </h2>
               <p className="text-[14px] leading-[1.95] text-champagne-dim mb-5">
                 {t(
-                  "SUOH began as a quiet dream — a desire to create something meaningful with my own hands. What started as evenings spent experimenting with leather and thread slowly became a passion I couldn't set aside. Every piece I made felt like a conversation between material and maker, and I knew I wanted to share that feeling with others.",
-                  "SUOH zaczęło się jako cichy sen — pragnienie stworzenia czegoś znaczącego własnymi rękami. To, co zaczynało się jako wieczory spędzone na eksperymentowaniu ze skórą i nicią, powoli stało się pasją, której nie mogłam odłożyć na bok. Każdy wykonany przeze mnie element był jak rozmowa między materiałem a twórcą, i wiedziałam, że chcę podzielić się tym uczuciem z innymi."
+                  "SUOH began as a quiet dream — a desire to create something meaningful with my own hands. What started as evenings spent experimenting with crochet hooks and polyester cord slowly became a passion I couldn't set aside. Every piece I made felt like a conversation between material and maker, and I knew I wanted to share that feeling with others.",
+                  "SUOH zaczęło się jako cichy sen — pragnienie stworzenia czegoś znaczącego własnymi rękami. To, co zaczynało się jako wieczory spędzone na eksperymentowaniu z szydełkiem i sznurkiem, powoli stało się pasją, której nie mogłam odłożyć na bok. Każdy wykonany przeze mnie element był jak rozmowa między materiałem a twórcą, i wiedziałam, że chcę podzielić się tym uczuciem z innymi."
                 )}
               </p>
               <p className="text-[14px] leading-[1.95] text-champagne-dim">
@@ -123,8 +123,8 @@ export default function AboutPage() {
               </h2>
               <p className="text-[14px] leading-[1.95] text-champagne-dim mb-5">
                 {t(
-                  "Every SUOH product starts as an idea — sometimes inspired by a color, a texture, or a feeling I want to capture. I source materials carefully, choosing quality leathers, fabrics, and hardware that will age beautifully over time.",
-                  "Każdy produkt SUOH zaczyna się jako pomysł — czasem inspirowany kolorem, teksturą lub uczuciem, które chcę uchwycić. Starannie dobieram materiały, wybierając wysokiej jakości skóry, tkaniny i okucia, które pięknie starzeją się z upływem czasu."
+                  "Every SUOH product starts as an idea — sometimes inspired by a color, a texture, or a feeling I want to capture. I source materials carefully, choosing quality polyester silk cords and hardware that will serve you beautifully over time.",
+                  "Każdy produkt SUOH zaczyna się jako pomysł — czasem inspirowany kolorem, teksturą lub uczuciem, które chcę uchwycić. Starannie dobieram materiały, wybierając wysokiej jakości sznurki z jedwabiu poliestrowego i okucia, które będą pięknie Ci służyć."
                 )}
               </p>
               <p className="text-[14px] leading-[1.95] text-champagne-dim mb-5">
