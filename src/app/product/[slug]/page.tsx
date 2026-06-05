@@ -4,7 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { getProductBySlug } from "@/lib/products";
+import { getProductBySlug, categories } from "@/lib/products";
 import { useStore } from "@/lib/store";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
@@ -52,12 +52,35 @@ export default function ProductPage() {
       <Header />
       <main className="bg-black min-h-screen pt-32 md:pt-40 pb-20 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <Link
-            href="/"
-            className="text-[11px] tracking-[0.2em] uppercase text-whiskey opacity-60 hover:opacity-100 transition-opacity no-underline mb-10 inline-block"
-          >
-            ← {t("Back", "Wróć")}
-          </Link>
+          <nav className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase mb-10">
+            <Link
+              href="/"
+              className="text-whiskey opacity-60 hover:opacity-100 transition-opacity no-underline"
+            >
+              {t("Home", "Strona główna")}
+            </Link>
+            <span className="text-champagne-dim opacity-40">/</span>
+            <Link
+              href="/shop"
+              className="text-whiskey opacity-60 hover:opacity-100 transition-opacity no-underline"
+            >
+              {t("Shop", "Sklep")}
+            </Link>
+            <span className="text-champagne-dim opacity-40">/</span>
+            <Link
+              href={`/category/${product.category}`}
+              className="text-whiskey opacity-60 hover:opacity-100 transition-opacity no-underline"
+            >
+              {t(
+                categories.find((c) => c.slug === product.category)?.name || "",
+                categories.find((c) => c.slug === product.category)?.namePL || ""
+              )}
+            </Link>
+            <span className="text-champagne-dim opacity-40">/</span>
+            <span className="text-champagne">
+              {t(product.name, product.namePL)}
+            </span>
+          </nav>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
             <div>

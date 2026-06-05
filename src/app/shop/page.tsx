@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { useStore } from "@/lib/store";
 import { products, categories } from "@/lib/products";
+import { useRouter } from "next/navigation";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -78,9 +80,27 @@ function ShopProductCard({ product }: { product: Product }) {
   );
 }
 
-export default function ShopPage() {
+function ShopContent() {
   const { t } = useStore();
-  const [filter, setFilter] = useState<string>("all");
+  const searchParams = useSearchParams();
+  const categoryParam = searchParams.get("category");
+  const router = useRouter();
+  const [filter, setFilter] = useState<string>(categoryParam || "all");
+
+  useEffect(() => {
+    if (categoryParam && categories.some((c) => c.slug === categoryParam)) {
+      setFilter(categoryParam);
+    }
+  }, [categoryParam]);
+
+  const handleFilter = (slug: string) => {
+    setFilter(slug);
+    if (slug === "all") {
+      router.replace("/shop", { scroll: false });
+    } else {
+      router.replace(`/shop?category=${slug}`, { scroll: false });
+    }
+  };
 
   const filtered =
     filter === "all"
@@ -93,12 +113,23 @@ export default function ShopPage() {
       <Header />
       <main className="bg-black min-h-screen pt-28 md:pt-36 pb-20">
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          <Link
-            href="/"
-            className="text-[11px] tracking-[0.2em] uppercase text-whiskey opacity-60 hover:opacity-100 transition-opacity no-underline mb-8 inline-block"
-          >
-            &larr; {t("Back to Home", "Wróć na stronę główną")}
-          </Link>
+          <nav className="flex items-center gap-2 text-[11px] tracking-[0.2em] uppercase mb-8">
+            <Link
+              href="/"
+              className="text-whiskey opacity-60 hover:opacity-100 transition-opacity no-underline"
+            >
+              {t("Home", "Strona główna")}
+            </Link>
+            <span className="text-champagne-dim opacity-40">/</span>
+            <span className="text-champagne">
+              {filter === "all"
+                ? t("Shop", "Sklep")
+                : t(
+                    categories.find((c) => c.slug === filter)?.name || "Shop",
+                    categories.find((c) => c.slug === filter)?.namePL || "Sklep"
+                  )}
+            </span>
+          </nav>
 
           <RevealOnScroll>
             <span className="text-[10px] tracking-[0.3em] uppercase text-whiskey mb-3 block">
@@ -117,7 +148,7 @@ export default function ShopPage() {
 
           <div className="flex gap-4 mb-10 flex-wrap">
             <button
-              onClick={() => setFilter("all")}
+              onClick={() => handleFilter("all")}
               className={`text-[11px] tracking-[0.2em] uppercase bg-transparent border border-[rgba(211,152,88,0.25)] px-5 py-2.5 transition-all duration-300 cursor-pointer ${
                 filter === "all"
                   ? "text-black bg-whiskey border-whiskey"
@@ -129,7 +160,7 @@ export default function ShopPage() {
             {categories.map((cat) => (
               <button
                 key={cat.slug}
-                onClick={() => setFilter(cat.slug)}
+                onClick={() => handleFilter(cat.slug)}
                 className={`text-[11px] tracking-[0.2em] uppercase bg-transparent border border-[rgba(211,152,88,0.25)] px-5 py-2.5 transition-all duration-300 cursor-pointer ${
                   filter === cat.slug
                     ? "text-black bg-whiskey border-whiskey"
@@ -150,5 +181,13 @@ export default function ShopPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function ShopPage() {
+  return (
+    <Suspense>
+      <ShopContent />
+    </Suspense>
   );
 }
