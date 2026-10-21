@@ -11,7 +11,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
         <div className="relative">
           <Image
-            src="/images/hero-brown-shoulder.webp"
+            src="/images/hero-brown-shoulder.jpg"
             alt={t("Brown crochet shoulder bag on the rocks", "Brązowa szydełkowa torebka na kamieniach")}
             fill
             className="object-cover object-[center_40%]"
