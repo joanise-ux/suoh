@@ -32,7 +32,33 @@ const paczkomatOptions = [
   "WRO04M — Galeria Magnolia, al. Legnicka",
 ];
 
+// Random ids for the demo order; real ids would come from the backend.
+function makeOrderId() {
+  return `#SUOH-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 9000) + 1000)}`;
+}
+
+function makeTrackingCode() {
+  return `SUOH64${Date.now().toString().slice(-8)}`;
+}
+
 export default function CheckoutPage() {
+  const { hydrated } = useStore();
+
+  // Wait for the saved cart and profile so the form starts pre-filled.
+  if (!hydrated) {
+    return (
+      <>
+        <AnnouncementBar />
+        <Header />
+        <main className="bg-black min-h-screen" />
+      </>
+    );
+  }
+
+  return <CheckoutForm />;
+}
+
+function CheckoutForm() {
   const router = useRouter();
   const { cart, t, user, isLoggedIn, addOrder, clearCart } = useStore();
   const [delivery, setDelivery] = useState<DeliveryMethod>("inpost");
@@ -54,6 +80,7 @@ export default function CheckoutPage() {
   const [cardCvc, setCardCvc] = useState("");
   const [cardName, setCardName] = useState("");
   const [blikCode, setBlikCode] = useState("");
+  const [formError, setFormError] = useState("");
 
   const cartItems = cart
     .map((item) => {
@@ -86,8 +113,38 @@ export default function CheckoutPage() {
     }
   };
 
+  const getMissingFields = () => {
+    const missing: string[] = [];
+    if (!/^\S+@\S+\.\S+$/.test(email.trim())) missing.push(t("email", "email"));
+    if (!firstName.trim()) missing.push(t("first name", "imię"));
+    if (!lastName.trim()) missing.push(t("last name", "nazwisko"));
+    if (!street.trim()) missing.push(t("street address", "adres"));
+    if (!postalCode.trim()) missing.push(t("postal code", "kod pocztowy"));
+    if (!city.trim()) missing.push(t("city", "miasto"));
+    if (phone.replace(/\D/g, "").length < 9) missing.push(t("phone number", "numer telefonu"));
+    if (payment === "card") {
+      if (cardNumber.replace(/\s/g, "").length !== 16) missing.push(t("card number", "numer karty"));
+      if (cardExpiry.replace(/\D/g, "").length !== 4) missing.push(t("expiry date", "data ważności"));
+      if (cardCvc.replace(/\D/g, "").length < 3) missing.push("CVC");
+      if (!cardName.trim()) missing.push(t("name on card", "imię i nazwisko na karcie"));
+    }
+    if (payment === "blik" && blikCode.replace(/\D/g, "").length !== 6) {
+      missing.push(t("BLIK code", "kod BLIK"));
+    }
+    return missing;
+  };
+
   const placeOrder = () => {
-    const orderId = `#SUOH-2026-${String(Math.floor(Math.random() * 9000) + 1000)}`;
+    const missing = getMissingFields();
+    if (missing.length > 0) {
+      setFormError(
+        t("Please fill in: ", "Uzupełnij: ") + missing.join(", ")
+      );
+      return;
+    }
+    setFormError("");
+
+    const orderId = makeOrderId();
     const deliveryLabel =
       delivery === "inpost"
         ? `InPost ${paczkomat.split(" — ")[0]}`
@@ -122,7 +179,7 @@ export default function CheckoutPage() {
       deliveryCost: freeShipping ? 0 : deliveryCost,
       total,
       status: "processing",
-      trackingCode: `PL${Math.floor(Math.random() * 9000000000) + 1000000000}`,
+      trackingCode: makeTrackingCode(),
       paymentMethod: paymentLabel,
     });
 
@@ -599,6 +656,11 @@ export default function CheckoutPage() {
               >
                 {t("Place Order", "Złóż zamówienie")}
               </button>
+              {formError && (
+                <p role="alert" className="text-[12px] text-[#e08a7a] leading-[1.6] mt-3">
+                  {formError}
+                </p>
+              )}
               <Link
                 href="/cart"
                 className="block w-full text-center bg-transparent border border-[rgba(211,152,88,0.15)] py-3.5 text-[11px] tracking-[0.2em] uppercase text-champagne-muted font-sans hover:border-whiskey hover:text-champagne transition-all mt-2 no-underline"

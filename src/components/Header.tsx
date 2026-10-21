@@ -116,9 +116,11 @@ export default function Header() {
               <line x1="3" y1="6" x2="21" y2="6" />
               <path d="M16 10a4 4 0 0 1-8 0" />
             </svg>
-            <span className="absolute -top-1.5 -right-1.5 bg-whiskey text-black w-[15px] h-[15px] rounded-full text-[8px] flex items-center justify-center">
-              {cartCount}
-            </span>
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 bg-whiskey text-black w-[15px] h-[15px] rounded-full text-[8px] flex items-center justify-center">
+                {cartCount}
+              </span>
+            )}
           </Link>
 
           <button

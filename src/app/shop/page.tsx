@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { useStore } from "@/lib/store";
 import { products, categories } from "@/lib/products";
@@ -85,16 +85,12 @@ function ShopContent() {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
   const router = useRouter();
-  const [filter, setFilter] = useState<string>(categoryParam || "all");
-
-  useEffect(() => {
-    if (categoryParam && categories.some((c) => c.slug === categoryParam)) {
-      setFilter(categoryParam);
-    }
-  }, [categoryParam]);
+  const filter =
+    categoryParam && categories.some((c) => c.slug === categoryParam)
+      ? categoryParam
+      : "all";
 
   const handleFilter = (slug: string) => {
-    setFilter(slug);
     if (slug === "all") {
       router.replace("/shop", { scroll: false });
     } else {

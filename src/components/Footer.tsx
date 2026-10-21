@@ -20,7 +20,12 @@ export default function Footer() {
     { label: t("Contact", "Kontakt"), href: "/contact" },
   ];
 
-  const socialLinks = ["Instagram", "TikTok", "Pinterest"];
+  // Demo brand without its own profiles yet, so these open the platforms.
+  const socialLinks = [
+    { label: "Instagram", href: "https://www.instagram.com/" },
+    { label: "TikTok", href: "https://www.tiktok.com/" },
+    { label: "Pinterest", href: "https://www.pinterest.com/" },
+  ];
 
   return (
     <footer className="bg-balsamico px-6 md:px-12 pt-15 pb-7.5 border-t border-[rgba(211,152,88,0.08)]">
@@ -81,12 +86,14 @@ export default function Footer() {
           </div>
           <ul className="list-none flex flex-col gap-3">
             {socialLinks.map((link) => (
-              <li key={link}>
+              <li key={link.label}>
                 <a
-                  href="#"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[13px] text-[rgba(234,206,170,0.45)] no-underline hover:text-champagne transition-colors duration-300 tracking-[0.05em]"
                 >
-                  {link}
+                  {link.label}
                 </a>
               </li>
             ))}
@@ -101,11 +108,13 @@ export default function Footer() {
         <div className="flex gap-5">
           {socialLinks.map((link) => (
             <a
-              key={link}
-              href="#"
+              key={link.label}
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[11px] tracking-[0.15em] text-[rgba(234,206,170,0.35)] no-underline uppercase hover:text-whiskey transition-colors duration-300"
             >
-              {link}
+              {link.label}
             </a>
           ))}
         </div>
