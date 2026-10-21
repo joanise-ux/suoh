@@ -24,7 +24,7 @@ export const products: Product[] = [
     price: 490,
     priceFormatted: "490 PLN",
     image: "/images/noir-mini-satin.jpg",
-    images: ["/images/noir-mini-satin.jpg", "/images/noir-crossbody-gold.jpg"],
+    images: ["/images/noir-mini-satin.jpg"],
     tag: "Handmade · Black",
     tagPL: "Ręcznie robiona · Czarna",
     category: "bags",
@@ -187,7 +187,7 @@ export const categories = [
     slug: "bags",
     name: "Bags",
     namePL: "Torebki",
-    image: "/images/collection-bags.jpg",
+    image: "/images/monochrome-statement.jpg",
   },
   {
     slug: "keychains",
