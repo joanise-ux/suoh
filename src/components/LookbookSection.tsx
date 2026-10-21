@@ -5,11 +5,11 @@ import { useStore } from "@/lib/store";
 import RevealOnScroll from "./RevealOnScroll";
 
 const looks = [
-  { src: "/images/lookbook-1.jpg", alt: "Look 1", span: true },
+  { src: "/images/slate-chain-bag-suoh.jpg", alt: "Look 1", span: true },
   { src: "/images/lookbook-2.jpg", alt: "Look 2" },
   { src: "/images/hero-brown-shoulder.jpg", alt: "Look 3" },
   { src: "/images/lookbook-4.jpg", alt: "Look 4" },
-  { src: "/images/lookbook-5.jpg", alt: "Look 5" },
+  { src: "/images/monochrome-statement-suoh.jpg", alt: "Look 5" },
 ];
 
 export default function LookbookSection() {

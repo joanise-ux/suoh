@@ -9,11 +9,11 @@ import Footer from "@/components/Footer";
 import RevealOnScroll from "@/components/RevealOnScroll";
 
 const looks = [
-  { src: "/images/lookbook-1.jpg", alt: "Look 1", span: true },
+  { src: "/images/slate-chain-bag-suoh.jpg", alt: "Look 1", span: true },
   { src: "/images/lookbook-2.jpg", alt: "Look 2" },
   { src: "/images/hero-brown-shoulder.jpg", alt: "Look 3" },
   { src: "/images/lookbook-4.jpg", alt: "Look 4" },
-  { src: "/images/lookbook-5.jpg", alt: "Look 5" },
+  { src: "/images/monochrome-statement-suoh.jpg", alt: "Look 5" },
 ];
 
 export default function LookbookPage() {
@@ -26,7 +26,7 @@ export default function LookbookPage() {
       <main className="bg-black min-h-screen">
         <div className="relative h-[50vh] overflow-hidden">
           <Image
-            src="/images/lookbook-1.jpg"
+            src="/images/slate-chain-bag-suoh.jpg"
             alt="Lookbook"
             fill
             className="object-cover brightness-[0.35]"
