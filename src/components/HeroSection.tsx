@@ -21,7 +21,7 @@ export default function HeroSection() {
         </div>
         <div className="relative hidden md:block">
           <Image
-            src="/images/hero-navy-chain.webp"
+            src="/images/hero-navy-suoh.webp"
             alt={t("Navy crochet bag with a chain strap", "Granatowa szydełkowa torebka z łańcuszkiem")}
             fill
             className="object-cover object-[center_60%]"
