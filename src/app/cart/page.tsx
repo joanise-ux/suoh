@@ -9,7 +9,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export default function CartPage() {
-  const { cart, removeFromCart, updateQty, t } = useStore();
+  const { cart, removeFromCart, updateQty, t, hydrated } = useStore();
 
   const cartItems = cart
     .map((item) => {
@@ -41,7 +41,7 @@ export default function CartPage() {
             {t("Your Bag", "Twój koszyk")}
           </h1>
 
-          {cartItems.length === 0 ? (
+          {!hydrated ? null : cartItems.length === 0 ? (
             <div className="text-center py-20">
               <div className="text-[48px] mb-6 opacity-30">🛍</div>
               <p className="text-champagne-dim text-[14px] mb-6">

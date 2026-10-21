@@ -53,10 +53,11 @@ interface StoreContextType {
   wishlist: string[];
   toggleWishlist: (slug: string) => void;
   isInWishlist: (slug: string) => boolean;
+  hydrated: boolean;
   isLoggedIn: boolean;
   user: UserProfile | null;
   orders: Order[];
-  login: (email: string, password: string) => void;
+  login: (email: string) => void;
   register: (data: { firstName: string; lastName: string; email: string; password: string }) => void;
   logout: () => void;
   addOrder: (order: Order) => void;
@@ -141,7 +142,10 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [hydrated, setHydrated] = useState(false);
 
+  // localStorage is only available in the browser, so saved state is read
+  // once after mount; reading it during render would break hydration.
   useEffect(() => {
+    /* eslint-disable react-hooks/set-state-in-effect */
     setLang(loadJSON<Lang>("suoh-lang", "en"));
     setCart(loadJSON<CartItem[]>("suoh-cart", []));
     setWishlist(loadJSON<string[]>("suoh-wishlist", []));
@@ -149,9 +153,11 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setIsLoggedIn(savedLoggedIn);
     if (savedLoggedIn) {
       setUser(loadJSON<UserProfile>("suoh-user", defaultUser));
-      setOrders(loadJSON<Order[]>("suoh-orders", defaultOrders));
     }
+    // Guest orders are kept too, so they can be tracked and show up after signing in.
+    setOrders(loadJSON<Order[]>("suoh-orders", savedLoggedIn ? defaultOrders : []));
     setHydrated(true);
+    /* eslint-enable react-hooks/set-state-in-effect */
   }, []);
 
   useEffect(() => {
@@ -173,7 +179,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     if (!hydrated) return;
     saveJSON("suoh-logged-in", isLoggedIn);
     if (isLoggedIn && user) saveJSON("suoh-user", user);
-    if (isLoggedIn) saveJSON("suoh-orders", orders);
+    saveJSON("suoh-orders", orders);
   }, [isLoggedIn, user, orders, hydrated]);
 
   const toggleLang = useCallback(() => {
@@ -228,10 +234,21 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     [wishlist]
   );
 
-  const login = useCallback((_email: string, _password: string) => {
+  // Demo account: any email signs in to a sample profile with sample orders,
+  // plus any orders placed as a guest in this browser.
+  const login = useCallback((email: string) => {
+    const savedUser = loadJSON<UserProfile | null>("suoh-user", null);
+    const trimmed = email.trim();
     setIsLoggedIn(true);
-    setUser(loadJSON<UserProfile>("suoh-user", defaultUser));
-    setOrders(loadJSON<Order[]>("suoh-orders", defaultOrders));
+    setUser(
+      savedUser && savedUser.email === trimmed
+        ? savedUser
+        : { ...defaultUser, email: trimmed || defaultUser.email }
+    );
+    setOrders((prev) => [
+      ...prev,
+      ...defaultOrders.filter((d) => !prev.some((o) => o.id === d.id)),
+    ]);
   }, []);
 
   const register = useCallback(
@@ -244,7 +261,6 @@ export function StoreProvider({ children }: { children: ReactNode }) {
       };
       setIsLoggedIn(true);
       setUser(newUser);
-      setOrders([]);
     },
     []
   );
@@ -283,6 +299,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         wishlist,
         toggleWishlist,
         isInWishlist,
+        hydrated,
         isLoggedIn,
         user,
         orders,

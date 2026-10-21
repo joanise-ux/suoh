@@ -25,9 +25,19 @@ function stepIndex(status: "processing" | "shipped" | "delivered") {
 export default function TrackingPage() {
   const params = useParams();
   const code = params.code as string;
-  const { orders, t, lang } = useStore();
+  const { orders, t, lang, hydrated } = useStore();
 
   const order = orders.find((o) => o.trackingCode === code);
+
+  if (!hydrated) {
+    return (
+      <>
+        <AnnouncementBar />
+        <Header />
+        <main className="bg-black min-h-screen" />
+      </>
+    );
+  }
 
   if (!order) {
     return (

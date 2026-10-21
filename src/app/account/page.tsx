@@ -20,15 +20,46 @@ function LoginRegisterView() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [formMessage, setFormMessage] = useState("");
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    login(email, password);
+    if (!email.trim() || !password) {
+      setFormMessage(t("Enter your email and password.", "Podaj email i hasło."));
+      return;
+    }
+    login(email);
+  };
+
+  const handleForgotPassword = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!/^\S+@\S+\.\S+$/.test(email.trim())) {
+      setFormMessage(t("Enter a valid email address.", "Podaj poprawny adres email."));
+      return;
+    }
+    setFormMessage(
+      t(
+        "If an account exists for this email, we've sent a link to reset your password.",
+        "Jeśli konto z tym adresem istnieje, wysłaliśmy link do zmiany hasła."
+      )
+    );
+  };
+
+  const switchTab = (next: Tab) => {
+    setTab(next);
+    setFormMessage("");
   };
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password !== confirmPassword) return;
+    if (!firstName.trim() || !email.trim() || !password) {
+      setFormMessage(t("Fill in your name, email and password.", "Uzupełnij imię, email i hasło."));
+      return;
+    }
+    if (password !== confirmPassword) {
+      setFormMessage(t("Passwords don't match.", "Hasła nie są takie same."));
+      return;
+    }
     register({ firstName, lastName, email, password });
   };
 
@@ -50,7 +81,7 @@ function LoginRegisterView() {
 
       <div className="flex mb-10 border-b border-[rgba(211,152,88,0.15)]">
         <button
-          onClick={() => setTab("login")}
+          onClick={() => switchTab("login")}
           className={`flex-1 py-3.5 text-[11px] tracking-[0.2em] uppercase bg-transparent border-none transition-all duration-300 cursor-pointer ${
             tab === "login"
               ? "text-champagne border-b-2 border-b-whiskey"
@@ -60,7 +91,7 @@ function LoginRegisterView() {
           {t("Sign In", "Zaloguj się")}
         </button>
         <button
-          onClick={() => setTab("register")}
+          onClick={() => switchTab("register")}
           className={`flex-1 py-3.5 text-[11px] tracking-[0.2em] uppercase bg-transparent border-none transition-all duration-300 cursor-pointer ${
             tab === "register"
               ? "text-champagne border-b-2 border-b-whiskey"
@@ -70,6 +101,19 @@ function LoginRegisterView() {
           {t("Register", "Zarejestruj się")}
         </button>
       </div>
+
+      <p className="text-[11px] text-champagne-dim tracking-[0.05em] leading-[1.7] text-center mb-8">
+        {t(
+          "Demo store — sign in with any email and password to see a sample account.",
+          "Sklep demo — zaloguj się dowolnym emailem i hasłem, aby zobaczyć przykładowe konto."
+        )}
+      </p>
+
+      {formMessage && (
+        <p role="status" className="text-[12px] text-whiskey leading-[1.7] text-center mb-6">
+          {formMessage}
+        </p>
+      )}
 
       {tab === "login" ? (
         <form onSubmit={handleLogin} className="space-y-5">
@@ -104,12 +148,13 @@ function LoginRegisterView() {
             {t("Sign In", "Zaloguj się")}
           </button>
           <div className="text-center">
-            <a
-              href="#"
-              className="text-[11px] text-champagne-dim tracking-[0.1em] no-underline hover:text-whiskey transition-colors"
+            <button
+              type="button"
+              onClick={handleForgotPassword}
+              className="bg-transparent border-none p-0 text-[11px] text-champagne-dim tracking-[0.1em] hover:text-whiskey transition-colors cursor-pointer"
             >
               {t("Forgot password?", "Zapomniałeś hasła?")}
-            </a>
+            </button>
           </div>
         </form>
       ) : (
@@ -774,13 +819,15 @@ function AccountDashboard() {
 }
 
 export default function AccountPage() {
-  const { isLoggedIn } = useStore();
+  const { isLoggedIn, hydrated } = useStore();
 
   return (
     <>
       <AnnouncementBar />
       <Header />
-      {isLoggedIn ? (
+      {!hydrated ? (
+        <main className="bg-black min-h-screen" />
+      ) : isLoggedIn ? (
         <main className="bg-black min-h-screen pt-20 md:pt-24">
           <AccountDashboard />
         </main>

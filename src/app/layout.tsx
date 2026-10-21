@@ -17,7 +17,10 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: "SUOH — Art you can carry.",
+  title: {
+    default: "SUOH — Art you can carry.",
+    template: "%s — SUOH",
+  },
   description:
     "Handmade bags, keychains and gifts crafted in Wrocław, Poland. Each piece is unique.",
 };

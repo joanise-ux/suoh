@@ -8,17 +8,30 @@ export default function HeroSection() {
 
   return (
     <section className="h-screen relative overflow-hidden p-0">
-      <div className="absolute inset-0 flex items-center justify-center">
-        <Image
-          src="/images/noir-crossbody-gold.jpg"
-          alt="SUOH Hero"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
+      <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-2">
+        <div className="relative">
+          <Image
+            src="/images/hero-brown-shoulder.webp"
+            alt={t("Brown crochet shoulder bag on the rocks", "Brązowa szydełkowa torebka na kamieniach")}
+            fill
+            className="object-cover object-[center_40%]"
+            priority
+            sizes="(min-width: 768px) 50vw, 100vw"
+          />
+        </div>
+        <div className="relative hidden md:block">
+          <Image
+            src="/images/hero-navy-chain.webp"
+            alt={t("Navy crochet bag with a chain strap", "Granatowa szydełkowa torebka z łańcuszkiem")}
+            fill
+            className="object-cover object-[center_60%]"
+            priority
+            sizes="50vw"
+          />
+        </div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,6,5,0.35)] via-[rgba(10,6,5,0.55)] to-[rgba(10,6,5,0.9)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(10,6,5,0.2)] via-[rgba(10,6,5,0.35)] to-[rgba(10,6,5,0.88)]" />
+      <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[rgba(10,6,5,0.75)] to-transparent" />
       <div className="absolute bottom-[12%] left-1/2 -translate-x-1/2 text-center w-full px-4">
         <div className="text-[11px] tracking-[0.3em] uppercase text-whiskey mb-4 opacity-0 animate-[fadeUp_1s_0.5s_forwards]">
           {t("New Collection", "Nowa kolekcja")} &nbsp;✦&nbsp; SS 2026
